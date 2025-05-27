@@ -2,6 +2,13 @@
 
 set -ouex pipefail
 
+# Set the platform based on environment variable
+if [[ "${TARGETARCH}" == "arm64" ]]; then
+  export BUILDAH_PLATFORM=linux/arm64
+else
+  export BUILDAH_PLATFORM=linux/amd64
+fi
+
 ### Install packages
 
 # Packages can be installed from any enabled yum repo on the image.

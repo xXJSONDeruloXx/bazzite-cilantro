@@ -19,9 +19,9 @@ on:
     branches:
       - main
     paths:
-      - './iso.toml'
-      - './.github/workflows/build-iso.yml'
-      - './Justfile'
+      - 'iso.toml'
+      - '.github/workflows/build-iso.yml'
+      - 'Justfile'
 
 env:
   IMAGE_REGISTRY: "ghcr.io/${{ github.repository }}"
@@ -34,7 +34,7 @@ concurrency:
 jobs:
   build:
     name: Build ISOs
-    runs-on: ${{ inputs.platform == 'amd64' && 'ubuntu-24.04' || 'ubuntu-24.04-arm' }}
+    runs-on: ${{ inputs.platform == 'arm64' && 'ubuntu-24.04-arm' || 'ubuntu-24.04' }}
     strategy:
       fail-fast: false
     permissions:
@@ -48,7 +48,6 @@ jobs:
           echo "IMAGE_REGISTRY=${IMAGE_REGISTRY,,}" >> ${GITHUB_ENV}
       
       - name: Install dependencies
-        if: inputs.platform == 'arm64'
         run: |
           set -x
           sudo apt update -y
