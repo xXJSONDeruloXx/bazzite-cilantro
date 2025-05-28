@@ -2,17 +2,18 @@
 FROM scratch AS ctx
 COPY build_files /
 
-# Base Image
-FROM ghcr.io/ublue-os/bazzite:stable
+# Base Image - Using Fedora Asahi Remix as base (designed for Apple Silicon/ARM64)
+FROM quay.io/fedora-asahi-remix-atomic-desktops/silverblue:42
 
-## Other possible base images include:
-# FROM ghcr.io/ublue-os/bazzite:latest
-# FROM ghcr.io/ublue-os/bluefin-nvidia:stable
+## Original base was AMD64 only and causing exec format errors:
+# FROM ghcr.io/ublue-os/bazzite:stable
+#
+# We're now using Fedora Asahi Remix which is specifically designed for Apple Silicon
+# and already includes all the necessary drivers and kernel for M1/M2/M3 Macs.
 # 
-# ... and so on, here are more base images
-# Universal Blue Images: https://github.com/orgs/ublue-os/packages
-# Fedora base image: quay.io/fedora/fedora-bootc:41
-# CentOS base images: quay.io/centos-bootc/centos-bootc:stream10
+# Alternative Asahi Remix images:
+# FROM quay.io/fedora-asahi-remix-atomic-desktops/kinoite:42 (KDE version)
+# FROM quay.io/fedora-asahi-remix-atomic-desktops/base-atomic:42 (minimal version)
 
 ### MODIFICATIONS
 ## make modifications desired in your image and install packages by modifying the build.sh script
