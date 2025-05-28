@@ -10,6 +10,7 @@ FROM quay.io/fedora-asahi-remix-atomic-desktops/silverblue:42
 #
 # We're now using Fedora Asahi Remix which is specifically designed for Apple Silicon
 # and already includes all the necessary drivers and kernel for M1/M2/M3 Macs.
+# Note: This base image already includes asahi-audio, apple-firmware-m1, and asahi-scripts
 # 
 # Alternative Asahi Remix images:
 # FROM quay.io/fedora-asahi-remix-atomic-desktops/kinoite:42 (KDE version)
