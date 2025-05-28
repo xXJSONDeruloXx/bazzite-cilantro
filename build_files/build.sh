@@ -2,12 +2,8 @@
 
 set -ouex pipefail
 
-# Set the platform based on environment variable
-if [[ "${TARGETARCH}" == "arm64" ]]; then
-  export BUILDAH_PLATFORM=linux/arm64
-else
-  export BUILDAH_PLATFORM=linux/amd64
-fi
+# Always build for ARM64 architecture
+export BUILDAH_PLATFORM=linux/arm64
 
 ### Install packages
 
